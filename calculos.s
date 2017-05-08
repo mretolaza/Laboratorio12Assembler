@@ -20,12 +20,12 @@
 
 .text
  .align 2
- .global rutinas12
+ .global calculos 
 
  @En la siguiente Subrutina se realiza el procedimiento de obtener el promedio de las 
  @notas del estudiante 
  
- rutinas12:
+ calculos:
  	@ingreso de datos (se transfieren a los registros que manejan floats)
 	VLRD S0, [r0] 
 	VLRD S1, [r1]

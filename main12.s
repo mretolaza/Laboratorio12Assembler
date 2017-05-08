@@ -43,7 +43,7 @@
 	bl scanf
 	mov r4,r0
 	
-	bl rutinas12
+	bl calculos 
 	
 	VLDR S0,[R0]	@@retorno de subrutina
 	
