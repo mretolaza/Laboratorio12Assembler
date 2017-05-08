@@ -16,28 +16,26 @@
 @  r0: resultado
 @  r1: residuo
 @ *************************************************************
-.global dividir
-dividir:
-    push {lr}
 
-    @ se reinician los valores de los registros donde iran a guardar  los resultados
-    mov r2, #0
-    mov r3, r0 @asignamos el residuo como A
+.text
+ .align 2
+ .global rutinas12
+ 
+ calculos:
+	VLRD S0, [r0]
+	VLRD S1, [r1]
+	VLRD S2, [r2]
+	VLRD S3, [r3]
+	VADD.f32 S0, S0,S1
+	VADD.f32 S2, S2,S3
+	VADD.f32 S0,S1  	@@suma de las cuatro notas
+	LDR R1, =cpc
+	VLDR S1, [R1]		@@en s1->0.4
+	VMUL.f32 S0,S0,S1	@@suma de las notas x 0.4
+	VSTR R0,[S0]			@@valor en r0
+	
+	MOV PC LR
 
-    inicio_div:
-        cmp r3,r1
-        blt fin_div     @terminar ya que B es mas grande que el residuo
-        sub r3,r3,r1    @residuo = residuo-B
-        add r2,r2,#1    @resultado = resultado+1
-        b inicio_div
-    fin_div:
+.data
 
-    mov r0, r2
-    mov r1, r3
-
-    pop {pc}
-
-
-    @subrutina str_to_num (Convierte un valor string en un valor integer)
-    @r0: cadena
-    @salida r0: numero
+cpc: float 0.4
