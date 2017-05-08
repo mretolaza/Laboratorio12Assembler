@@ -19,34 +19,35 @@
 	
 	@@parte de lectura de notas
 	
-	ldr r0,=mensaje
-	ldr r1,=num1
+	ldr r0,=inicioMensaje
+	ldr r1,=numero1
 	bl scanf
 	mov r1,r0
 	
 	
-	ldr r0,=mensaje
-	ldr r1,=num2
+	ldr r0,=inicioMensaje
+	ldr r1,=numero2
 	bl scanf
 	mov r2,r0
 	
 	
 	
-	ldr r0,=mensaje
-	ldr r1,=num3
+	ldr r0,=inicioMensaje
+	ldr r1,=numero3
 	bl scanf
 	mov r3,r0
 	
 	
-	ldr r0,=mensaje
-	ldr r1,=num4
+	ldr r0,=inicioMensaje
+	ldr r1,=numero4
 	bl scanf
 	mov r4,r0
 	
-	bl calculos
+	bl rutinas12
 	
 	VLDR S0,[R0]	@@retorno de subrutina
-	LDR R1, =notaProyecto
+	
+	LDR R1, =notaFinalEstudiante
 	VMOV S1, [R1]
 	VSUB.f32 S0,S0,F1
 	VSTR R3, [S0]
@@ -60,10 +61,10 @@
 	
  .data:
  
- mensaje .asciz "A continuacion Ingrese una nota"
- num1: .word "%f/n"
- num2: .word "%f/n"
- num3: .word "%f/n"
- num4: .word "%f/n"
+ inicioMensaje .asciz "A continuacion Ingrese una nota"
+ numero1: .word "%f/n"
+ numero2: .word "%f/n"
+ numero3: .word "%f/n"
+ numero4: .word "%f/n"
  
- notaProyecto: .float 0.61
+ notaFinalEstudiante: .float 0.61
